@@ -1,0 +1,15 @@
+.centered {
+    text-align: center;
+}
+
+.container {
+    /* add styles for container */
+}
+
+.error {
+    color: red;
+}
+
+.success { 
+    color: green; 
+}
