@@ -1,10 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Contact
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 def index(request):
+    context={"clase": "inicio"}
     return render(request, 'index.html')
 
 def about(request):
+    context={"clase": "about"}
     return render(request, 'about.html')
 
 
@@ -25,14 +30,27 @@ def login(request):
     return render(request, 'login.html')
 
 def sign_up(request):
-    return render(request, 'sign_up.html')
+    if request.method != "POST":
+        context={"clase": "registro"}
+        return render(request, 'sign_up.html', context)
+    else:
+        nombre = request.POST["nombre"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+        user = User.objects.create_user(nombre, email, password)
+        user.save()
+        context={"clase": "registro", "mensaje":"Los datos fueron registrados"}
+        return render(request, 'sign_up.html', context)
+    
 
 def cartelera(request):
+    context={"clase": "cartelera"}
     return render(request, 'cartelera.html')
 
 def compra(request):
+    context={"clase": "compra"}
     return render(request, 'compra.html')
 
-
-def success_view(request):
-    return render(request, 'success.html')
+def login(request):
+    context={"clase": "login"}
+    return render(request, 'registration/login.html')

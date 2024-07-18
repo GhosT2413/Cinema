@@ -32,6 +32,12 @@
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  <style>
+    .dropdown-menu {
+      background-color: #666666;
+
+    }
+  </style>
 </head>
 <!-- body -->
 
@@ -70,8 +76,29 @@
                     <li> <a href="{% url 'cartelera' %}">Cartelera</a> </li>
                     <li> <a href="{% url 'contact' %}">Contactanos</a> </li>
 
-                    <li> <a href="{% url 'login' %}">login</a> </li>
-                    <li> <a class="last_manu" href="#"><img src="{% static 'images/search_icon.png' %}" alt="#" /></a> </li>
+                    <li class="nav-item dropdown">
+                      {% if user.is_authenticated %}
+                      <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Mi Perfil</a>
+                        <form id="logoutForm" action="accounts/logout/" method="post">
+                          {% csrf_token %}
+                          <a class="dropdown-item"
+                            href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+                        </form>
+                      </div>
+                      {% else %}
+                      <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'login'%}">Login</a>
+                        <a class="dropdown-item" href="{% url 'signup'%}">Sign Up</a>
+                      </div>
+                      {% endif %}
+                    </li>
+                    <li> <a class="last_manu" href="#"><img src="{% static 'images/search_icon.png' %}" alt="#" /></a>
+                    </li>
 
                   </ul>
                 </nav>
@@ -96,26 +123,55 @@
     </div>
 
     <!-- about  -->
-    <div id="about" class="about">
-      <div class="container">
-        <div class="row display_boxflex">
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-            <div class="about-box">
-              <h2>Compra tickets</h2>
-              <p>Compra y se feliz viendo nuestra peliculas</p>
-              <a href="compra.html">Comprar tickets</a>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-            <div class="about-box">
-              <figure><img src="{% static 'images/tickets.jpeg' %}" alt="#" /></figure>
-            </div>
+  <div id="about" class="about">
+    <div class="container">
+      <div class="row display_boxflex">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="about-box">
+            <h2>Nuestra historia moderna</h2>
+            <p>En esta comunidad urbana, Antonia y Nicolas, unos jovenes emprendedores apasionados por el cine, crean un
+              cine moderno con tecnología de vanguardia. Con pantallas curvas HD, sonido envolvente y butacas
+              reclinables con realidad aumentada, su inauguración es un éxito rotundo, convirtiéndose en el punto de
+              encuentro favorito de la comunidad.</p>
+
           </div>
         </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="about-box">
+            <figure><img src="{% static 'images/blancoynegro.jpeg' %}" alt="#" /></figure>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
+  <!-- end abouts -->
+
+  <!-- upcoming -->
+  <div id="upcoming" class="upcoming">
+    <div class="container-fluid padding_left3">
+      <div class="row display_boxflex">
+        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+          <div class="box_text">
+            <div class="titlepage">
+              <h2>La historia de un cine moderno</h2>
+            </div>
+            <p>Antonia y Nicolás, dos jóvenes apasionados por el cine, decidieron crear un cine moderno en honor a sus
+              abuelos, quienes les transmitieron su amor por las películas clásicas. Antonia, cuyo nombre es un tributo
+              a su abuela, y Nicolás, en honor a su abuelo, compartían el deseo de combinar la nostalgia del pasado con
+              la innovación del presente. Juntos, buscaron revivir la magia del cine en su comunidad, ofreciendo una
+              experiencia única que fusionaba la tradición con la tecnología de vanguardia.</p>
+          </div>
+        </div>
+        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 border_right">
+          <div class="upcomimg">
+            <figure><img src="{% static 'images/cinemoderno.jpeg' %}" alt="#" /></figure>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- end abouts -->
+  </div>
+  <!-- end upcoming -->
 
 
 
