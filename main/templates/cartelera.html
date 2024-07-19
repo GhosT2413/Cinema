@@ -133,21 +133,25 @@
             <div class="full">
               <div class="center-desk">
                 <div class="logo">
-                  <a href="index.html"><img src="{% static 'images/Logo Cinema.jpeg' %}" alt="#" /></a>
+                  <img src="{% static 'images/Logo Cinema.jpeg' %}" alt="#" />
                 </div>
               </div>
             </div>
           </div>
           <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9">
+
             <div class="menu-area">
               <div class="limit-box">
                 <nav class="main-menu ">
                   <ul class="menu-area-main">
                     <li> <a href="{% url 'index' %}">Home</a> </li>
+
                     <li> <a href="{% url 'about' %}">About</a> </li>
                     <li><a href="{% url 'compra' %}">Comprar Tickets</a></li>
                     <li class="active"> <a href="{% url 'cartelera' %}">Cartelera</a> </li>
                     <li> <a href="{% url 'contact' %}">Contactanos</a> </li>
+                    <li> <a href="{% url 'carrito' %}">Carrito</a> </li>
+
                     <li class="nav-item dropdown">
                       {% if user.is_authenticated %}
                       <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
@@ -169,10 +173,10 @@
                       </div>
                       {% endif %}
                     </li>
-                    <li> <a class="last_manu" href="#"><img src="{% static 'images/search_icon.png' %}" alt="#" /></a>
-                    </li>
+
                   </ul>
                 </nav>
+
               </div>
             </div>
           </div>

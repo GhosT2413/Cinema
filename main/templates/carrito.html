@@ -64,16 +64,19 @@
             </div>
           </div>
           <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9">
+
             <div class="menu-area">
               <div class="limit-box">
                 <nav class="main-menu ">
                   <ul class="menu-area-main">
                     <li> <a href="{% url 'index' %}">Home</a> </li>
-                    <li class="active"> <a href="{% url 'about' %}">About</a> </li>
+
+                    <li> <a href="{% url 'about' %}">About</a> </li>
                     <li><a href="{% url 'compra' %}">Comprar Tickets</a></li>
                     <li> <a href="{% url 'cartelera' %}">Cartelera</a> </li>
                     <li> <a href="{% url 'contact' %}">Contactanos</a> </li>
-                    <li> <a href="{% url 'carrito' %}">Carrito</a> </li>
+                    <li class="active"> <a href="{% url 'carrito' %}">Carrito</a> </li>
+
                     <li class="nav-item dropdown">
                       {% if user.is_authenticated %}
                       <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
@@ -82,7 +85,8 @@
                         <a class="dropdown-item" href="#">Mi Perfil</a>
                         <form id="logoutForm" action="accounts/logout/" method="post">
                           {% csrf_token %}
-                          <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+                          <a class="dropdown-item"
+                            href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
                         </form>
                       </div>
                       {% else %}
@@ -94,9 +98,12 @@
                       </div>
                       {% endif %}
                     </li>
-                    
+                    <li>
+                    </li>
+
                   </ul>
                 </nav>
+
               </div>
             </div>
           </div>
@@ -109,65 +116,27 @@
         <div class="row">
           <div class="col-md-12">
             <div class="heding">
-              <h2>About</h2>
+              <h2>Carrito Compra</h2>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <br>
+    <!-- Carrito  -->
+    <h1>Carrito</h1>
+    <ul>
+      
+      {% for item in carrito %}
+          <li>{{ item.producto }} - Cantidad: {{ item.cantidad }}</li>
+      {% endfor %}
+  </ul>
+  <a href="{% url 'compra' %}">Seguir comprando</a>
 
-    <!-- about  -->
-    <div id="about" class="about">
-      <div class="container">
-        <div class="row display_boxflex">
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-            <div class="about-box">
-              <h2>Nuestra historia moderna</h2>
-              <p>En esta comunidad urbana, Antonia y Nicolas, unos jovenes emprendedores apasionados por el cine, crean
-                un
-                cine moderno con tecnología de vanguardia. Con pantallas curvas HD, sonido envolvente y butacas
-                reclinables con realidad aumentada, su inauguración es un éxito rotundo, convirtiéndose en el punto de
-                encuentro favorito de la comunidad.</p>
-
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-            <div class="about-box">
-              <figure><img src="{% static 'images/blancoynegro.jpeg' %}" alt="#" /></figure>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <!-- end abouts -->
+    <!-- End Carrito -->
 
     <!-- upcoming -->
-    <div id="upcoming" class="upcoming">
-      <div class="container-fluid padding_left3">
-        <div class="row display_boxflex">
-          <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
-            <div class="box_text">
-              <div class="titlepage">
-                <h2>La historia de un cine moderno</h2>
-              </div>
-              <p>Antonia y Nicolás, dos jóvenes apasionados por el cine, decidieron crear un cine moderno en honor a sus
-                abuelos, quienes les transmitieron su amor por las películas clásicas. Antonia, cuyo nombre es un
-                tributo
-                a su abuela, y Nicolás, en honor a su abuelo, compartían el deseo de combinar la nostalgia del pasado
-                con
-                la innovación del presente. Juntos, buscaron revivir la magia del cine en su comunidad, ofreciendo una
-                experiencia única que fusionaba la tradición con la tecnología de vanguardia.</p>
-            </div>
-          </div>
-          <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 border_right">
-            <div class="upcomimg">
-              <figure><img src="{% static 'images/cinemoderno.jpeg' %}" alt="#" /></figure>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     <!-- end upcoming -->
 
 

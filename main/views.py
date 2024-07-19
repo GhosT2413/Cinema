@@ -3,6 +3,7 @@ from .models import Contact
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 def index(request):
     context={"clase": "inicio"}
@@ -54,3 +55,20 @@ def compra(request):
 def login(request):
     context={"clase": "login"}
     return render(request, 'registration/login.html')
+
+def agregarAlCarrito(request, product_name):
+    if 'cart' not in request.session:
+        request.session['cart'] = []
+    
+    cart = request.session['cart']
+    cart.append(product_name)
+    request.session['cart'] = cart
+    messages.success(request, f'{product_name} ha sido agregado con éxito')
+    return redirect('carrito')
+
+def carrito(request):
+    cart = request.session.get('cart', [])
+    context = {
+        'cart': cart
+    }
+    return render(request, 'carrito.html', context)

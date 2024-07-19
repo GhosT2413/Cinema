@@ -75,6 +75,7 @@
                       <li><a href="{% url 'compra' %}">Comprar Tickets</a></li>
                       <li> <a href="{% url 'cartelera' %}">Cartelera</a> </li>
                       <li> <a href="{% url 'contact' %}">Contactanos</a> </li>
+                      <li> <a href="{% url 'carrito' %}">Carrito</a> </li>
 
                       <li class="nav-item dropdown">
                         {% if user.is_authenticated %}
@@ -97,7 +98,7 @@
                         </div>
                         {% endif %}
                       </li>
-                      <li> <a class="last_manu" href="#"><img src="{% static 'images/search_icon.png' %}" alt="#" /></a>
+                      <li> 
                       </li>
 
                     </ul>
